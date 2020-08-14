@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 枪控制器，有枪们的引用，负责枪械相关事件，从controller哪里接受事件
+/// </summary>
 public class GunController : MyElement
 {
     public List<GameObject> guns;
@@ -9,18 +12,12 @@ public class GunController : MyElement
     private int currentGunNum;
     private GunPrototype currentGunModule;
 
-    public RightHandEventPass right;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentGunNum = 0;
-      /*  currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
-        guns[currentGunNum].SetActive(true);
-        ChangeGunGrab();*/
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -42,10 +39,14 @@ public class GunController : MyElement
     public void ChangeGun()
     {
         ChangeGunState();
-        ChangeGunGrab();
+        currentGunModule.GrabThisGun();
 
         Debug.Log("接收到了换枪信息");
     }
+
+    /// <summary>
+    /// 切换当前枪的引用和序号，不用的枪隐藏，用的枪激活
+    /// </summary>
     private void  ChangeGunState()
     {
         guns[currentGunNum].SetActive(false);
@@ -59,12 +60,6 @@ public class GunController : MyElement
         currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
     }
 
-    private void ChangeGunGrab()
-    {
-        GameObject currentGun = guns[currentGunNum];
-
-        right.GrabGun(currentGun);
-    }
 
 
 }

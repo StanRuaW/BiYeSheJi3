@@ -463,11 +463,12 @@ MonoBehaviour:
   usingState: 0
   bullet: {fileID: 1968053280}
   Hand: {fileID: 1105899483}
-  bulletSpeed: 3
+  bulletSpeed: 300
   bulletLife: 3
   shotspeed: 3
   ShotPoint: {fileID: 963995689}
   MaxBulletNum: 3
+  right: {fileID: 1105899485}
   snapPosition: {x: -0.01, y: 0, z: -0.04}
   snapRotation: {x: 180, y: 50, z: 70}
   snapScale: {x: 1, y: 1, z: 1}
@@ -686,11 +687,12 @@ MonoBehaviour:
   usingState: 0
   bullet: {fileID: 499540692}
   Hand: {fileID: 1105899483}
-  bulletSpeed: 3
+  bulletSpeed: 300
   bulletLife: 3
   shotspeed: 3
   ShotPoint: {fileID: 1741985103}
   MaxBulletNum: 3
+  right: {fileID: 1105899485}
   snapPosition: {x: -0.01, y: 0, z: -0.04}
   snapRotation: {x: 180, y: 50, z: 70}
   snapScale: {x: 1, y: 1, z: 1}
@@ -2999,7 +3001,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567627605}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 80081eb1763de784a8e8d534f72b3e92, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -3552,11 +3554,12 @@ MonoBehaviour:
   usingState: 0
   bullet: {fileID: 884829352}
   Hand: {fileID: 1105899483}
-  bulletSpeed: 3
+  bulletSpeed: 300
   bulletLife: 3
   shotspeed: 3
   ShotPoint: {fileID: 248655097}
   MaxBulletNum: 3
+  right: {fileID: 1105899485}
   snapPosition: {x: -0.01, y: 0, z: -0.04}
   snapRotation: {x: 180, y: 50, z: 70}
   snapScale: {x: 1, y: 1, z: 1}
@@ -3980,7 +3983,6 @@ MonoBehaviour:
   - {fileID: 148688658}
   - {fileID: 1902398415}
   currentGunNum: 0
-  right: {fileID: 1105899485}
 --- !u!1 &2126651854
 GameObject:
   m_ObjectHideFlags: 0

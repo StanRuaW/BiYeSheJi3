@@ -9,18 +9,26 @@ public class MyElement : MonoBehaviour
     //中央控制器的入口，中央控制器可以通信和互相调用
     public MyApplication app { get { return GameObject.FindObjectOfType<MyApplication>(); } }
 
+    /// <summary>
+    /// 接受全局的消息，收到的消息每个controller自己处理
+    /// </summary>
+    /// <param name="eventName"></param>
+    /// <param name="obj"></param>
+    /// <param name="data"></param>
     virtual public void OnNotification(string eventName, Object obj, params object[] data) { }
 
 }
 
-//中央控制器  
+/// <summary>
+/// 中央控制器  
+/// </summary>
 public class MyApplication : MonoBehaviour
 {
-    // Start is called before the first frame update
     public MagneticController magneticController;
     public PlayerController playerController;
 
     private List<MyElement> controllerList;
+
     private void Awake()
     {
         //检测当前挂的object是不是tag是Application，
@@ -47,6 +55,12 @@ public class MyApplication : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 全局通知函数
+    /// </summary>
+    /// <param name="eventName"></param>
+    /// <param name="obj"></param>
+    /// <param name="data"></param>
     public void Notify(string eventName,Object obj,params object[] data)
     {
         foreach(MyElement c in controllerList)

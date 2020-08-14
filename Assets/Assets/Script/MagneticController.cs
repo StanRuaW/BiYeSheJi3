@@ -21,16 +21,6 @@ public class MagneticController : MyElement
     {
         mObjects = new List<MagneticObject>();
     }
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {

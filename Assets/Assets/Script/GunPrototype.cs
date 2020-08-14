@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
+/// <summary>
+/// 枪的原型，可以开枪、换弹、挂载到手上
+/// </summary>
 public class GunPrototype : VRTK_InteractableObject
 {
     [Header("枪械设置")]
@@ -19,7 +22,7 @@ public class GunPrototype : VRTK_InteractableObject
     private int currentBulletNum;
     public int CurrentBulletNum { private set { currentBulletNum = value; } get { return currentBulletNum; } }
 
-    private VRTK_ControllerEvents controllerEvents;
+    public RightHandEventPass right;//枪激活时候要挂载到这个手上
 
     [Header("snapPoint设置")]
     [SerializeField] private Vector3 snapPosition;
@@ -34,11 +37,11 @@ public class GunPrototype : VRTK_InteractableObject
 
     }
 
-     private void OnEnable()
+   /*  private void OnEnable()
     {
         base.OnEnable();
         ResetSnapPoint();
-    }
+    }*/
 
     public void Shot()
     {
@@ -50,6 +53,7 @@ public class GunPrototype : VRTK_InteractableObject
             return;
         }
 
+        //克隆子弹，设置速度、方向、几秒之后消失
         GameObject bulletClone = Instantiate(bullet, ShotPoint.transform.position, ShotPoint.transform.rotation);
         bulletClone.SetActive(true);
         Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
@@ -57,6 +61,10 @@ public class GunPrototype : VRTK_InteractableObject
         Destroy(bulletClone, bulletLife);
 
         currentBulletNum--;
+
+        //飞出弹壳
+        //音效
+        //爆炸
 
         Debug.Log("shot");
     }
@@ -81,10 +89,22 @@ public class GunPrototype : VRTK_InteractableObject
         }
     }
 
+    /// <summary>
+    /// 重置SnapPoint的transform，因为每次重新active的时候snappoint的坐标会乱
+    /// </summary>
     public void ResetSnapPoint()
     {
         snapPoint.transform.localPosition = snapPosition;
         snapPoint.transform.localEulerAngles = snapRotation;
         snapPoint.transform.localScale = snapScale;
+    }
+
+    /// <summary>
+    /// 让手抓住这把枪
+    /// </summary>
+    public void GrabThisGun()
+    {
+        ResetSnapPoint();
+        right.GrabGun(gameObject);
     }
 }

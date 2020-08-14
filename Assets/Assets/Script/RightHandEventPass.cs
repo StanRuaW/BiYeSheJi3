@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
+/// <summary>
+/// 右手的事件处理转发器和动作处理
+/// </summary>
 public class RightHandEventPass : MyElement
 {
 
@@ -11,8 +14,6 @@ public class RightHandEventPass : MyElement
     private VRTK_InteractTouch interActTouch;
     private VRTK_InteractGrab interActGrab;
 
-    //  public GameObject obj;
-    // Start is called before the first frame update
     protected void OnEnable()
     {
         interActTouch = gameObject.GetComponent<VRTK_InteractTouch>();
@@ -36,7 +37,6 @@ public class RightHandEventPass : MyElement
         controllerEvents.TouchpadPressed -= SendChangeGunMessage;
     }
 
-    // Update is called once per frame
     private void SendTryFireMessage(object sender, ControllerInteractionEventArgs e)
     {
         app.Notify(MyEvent.TryShot, gameObject, e);

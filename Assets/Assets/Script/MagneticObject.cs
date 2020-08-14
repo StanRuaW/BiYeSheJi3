@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
 
+/// <summary>
+/// 磁性物体，分为N极、S极、无极三个状态。磁力的处理由controller控制
+/// </summary>
 public class MagneticObject : MyElement
 {
     //因为Nullable<bool>isn不可序列化，所以用这两个来替代一下。
@@ -63,6 +66,9 @@ public class MagneticObject : MyElement
         heisn();
     }
 
+    /// <summary>
+    /// 因为Nullable物体不会再inspector上显示，所以用这个来代替一下
+    /// </summary>
     void heisn()
     {
         if(isN!=null)

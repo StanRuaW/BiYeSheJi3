@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 玩家控制器，接受并分发事件，并做逻辑处理
+/// </summary>
 public class PlayerController : MyElement
 {
     public GunController gunController;
@@ -29,6 +32,10 @@ public class PlayerController : MyElement
 
             case "try.change.gun":
                 gunController.ChangeGun();
+                break;
+
+            case "try.reload.gun":
+                gunController.Reload();
                 break;
         }
     }
