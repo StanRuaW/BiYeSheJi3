@@ -25,6 +25,8 @@ public class RightHandEventPass : MyElement
         controllerEvents.TriggerPressed += SendTryFireMessage;
         controllerEvents.ButtonTwoPressed += SendReloadMessage;
         controllerEvents.TouchpadPressed += SendChangeGunMessage;
+
+
     }
 
     protected void OnDisable()
@@ -52,8 +54,8 @@ public class RightHandEventPass : MyElement
 
     public void GrabGun(GameObject obj)
     {
-          interActGrab.ForceRelease();
-          //interActTouch.ForceStopTouching();
+        interActGrab.ForceRelease();
+        interActTouch.ForceStopTouching();
 
         interActTouch.ForceTouch(obj);
         interActGrab.AttemptGrab();

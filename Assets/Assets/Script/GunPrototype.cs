@@ -20,18 +20,26 @@ public class GunPrototype : VRTK_InteractableObject
     public int CurrentBulletNum { private set { currentBulletNum = value; } get { return currentBulletNum; } }
 
     private VRTK_ControllerEvents controllerEvents;
-    /*  public override void StartUsing(VRTK_InteractUse usingObject)
-      {
-          base.StartUsing(usingObject);
-          FireBullet();
-      }*/
 
-    private void Start()
+    [Header("snapPoint设置")]
+    [SerializeField] private Vector3 snapPosition;
+    [SerializeField] private Vector3 snapRotation;
+    [SerializeField] private Vector3 snapScale;
+    [SerializeField] private GameObject snapPoint;
+
+    protected void Start()
     {
         currentBulletNum = MaxBulletNum;
 
 
     }
+
+     private void OnEnable()
+    {
+        base.OnEnable();
+        ResetSnapPoint();
+    }
+
     public void Shot()
     {
         if (!HasBullet())
@@ -71,5 +79,12 @@ public class GunPrototype : VRTK_InteractableObject
             Debug.LogError("出现了子弹小于0");
             return false;
         }
+    }
+
+    public void ResetSnapPoint()
+    {
+        snapPoint.transform.localPosition = snapPosition;
+        snapPoint.transform.localEulerAngles = snapRotation;
+        snapPoint.transform.localScale = snapScale;
     }
 }

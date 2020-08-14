@@ -55,7 +55,7 @@ public class GunController : MyElement
         else
             currentGunNum++;
 
-        guns[currentGunNum].SetActive(true);
+       guns[currentGunNum].SetActive(true);
         currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
     }
 
@@ -65,4 +65,6 @@ public class GunController : MyElement
 
         right.GrabGun(currentGun);
     }
+
+
 }
