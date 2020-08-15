@@ -16,7 +16,10 @@ public class GunMagnetic :GunPrototype
         
     }
 
-    override public void Shot()
+    new public void Shot()
     {
+        base.Shot();
+
+
     }
 }
