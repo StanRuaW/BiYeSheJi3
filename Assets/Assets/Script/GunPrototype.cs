@@ -43,7 +43,7 @@ public class GunPrototype : VRTK_InteractableObject
         ResetSnapPoint();
     }*/
 
-    public void Shot()
+     public void Shot()
     {
         if (!HasBullet())
         {
