@@ -1,4 +1,7 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+/// <summary>
 /// 全局的变量，当event一样用
 /// </summary>
 /// 有人进行全局的notify给所有的controller，然后每个controller自己判断
