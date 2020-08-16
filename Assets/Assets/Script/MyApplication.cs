@@ -26,6 +26,7 @@ public class MyApplication : MonoBehaviour
 {
     public MagneticController magneticController;
     public PlayerController playerController;
+    public UIController uiController;
 
     private List<MyElement> controllerList;
 
@@ -53,6 +54,10 @@ public class MyApplication : MonoBehaviour
         else
             controllerList.Add(playerController);
 
+        if (uiController == null)
+            Debug.LogError("UIController加载失败");
+        else
+            controllerList.Add(uiController);
     }
 
     /// <summary>

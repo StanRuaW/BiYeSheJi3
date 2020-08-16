@@ -51,7 +51,7 @@ public class MagneticObject : MyElement
     {
         if (isn == true)
             //gameObject.GetComponent<Renderer>().material.color = Color.blue;
-            gameObject.GetComponent<Renderer>().sharedMaterial.color = Color.blue;
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
 
         else if (isn == false)
             gameObject.GetComponent<Renderer>().material.color = Color.red;

@@ -15,7 +15,6 @@ public class GunPrototype : VRTK_InteractableObject
 
     public float bulletSpeed;
     public float bulletLife;
-    public float shotspeed;
     public GameObject ShotPoint;
 
     public int MaxBulletNum;
@@ -25,6 +24,17 @@ public class GunPrototype : VRTK_InteractableObject
     public RightHandEventPass right;//枪激活时候要挂载到这个手上
 
     public GameObject GunSpark;
+
+    public float shotInterval;
+    private float lastShotTime;
+
+
+    [SerializeField] protected string gunName;
+    public string GUNNAME { get { return gunName; } }
+    protected string gunType;
+    public string GUNTYPE { get { return gunType; } }
+
+
 
     [Header("snapPoint设置")]
     [SerializeField] private Vector3 snapPosition;
@@ -37,6 +47,9 @@ public class GunPrototype : VRTK_InteractableObject
         currentBulletNum = MaxBulletNum;
         GunSpark.SetActive(false);
 
+        //初始化射击的时间间隔
+        lastShotTime = Time.time;
+
     }
 
    /*  private void OnEnable()
@@ -47,6 +60,12 @@ public class GunPrototype : VRTK_InteractableObject
 
      virtual public void Shot()
     {
+        if(!IsTimeToShot())
+        {
+            Debug.Log("不是开枪的时间");
+            return ;
+        }
+
         if (!HasBullet())
         {
             Debug.Log("No bullet");
@@ -72,18 +91,27 @@ public class GunPrototype : VRTK_InteractableObject
         //音效
         //爆炸
 
-
-
-        Debug.Log("shot");
     }
 
     virtual public void Reload()
     {
         CurrentBulletNum = MaxBulletNum;
-        Debug.Log("ReLoad");
         //play
     }
 
+    /// <summary>
+    /// 用来限制开枪的速度
+    /// </summary>
+    private bool IsTimeToShot()
+    {
+        if (Time.time - lastShotTime > shotInterval)
+        {
+            lastShotTime = Time.time + shotInterval;
+            return true;
+        }
+        else
+            return false;
+    }
     public bool HasBullet()
     {
         if (currentBulletNum == 0)
@@ -132,4 +160,10 @@ public class GunPrototype : VRTK_InteractableObject
     {
 
     }
+
+    virtual public object GetBulletState()
+    {
+        return null;
+    }
+
 }

@@ -16,6 +16,9 @@ public class GunController : MyElement
     void Start()
     {
         currentGunNum = 0;
+        currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
+
+        SendGunStateToUI();
     }
 
     void Update()
@@ -25,23 +28,32 @@ public class GunController : MyElement
 
     public void Shot()
     {
+        if (guns.Count == 0)
+            return;
         currentGunModule.Shot();
         Debug.Log("接收到了射击信息");
+        SendGunStateToUI();
     }
 
 
     public void Reload()
     {
+        if (guns.Count == 0)
+            return;
         currentGunModule.Reload();
-        Debug.Log("接收到了换单信息");
+        Debug.Log("接收到了换弹信息");
+        SendGunStateToUI();
     }
 
     public void ChangeGun()
     {
+        if (guns.Count == 0)
+            return;
         ChangeGunState();
         currentGunModule.GrabThisGun();
 
         Debug.Log("接收到了换枪信息");
+        SendGunStateToUI();
     }
 
     /// <summary>
@@ -60,6 +72,20 @@ public class GunController : MyElement
         currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
     }
 
+    private void SendGunStateToUI()
+    {
+        string gunType;
+        string gunName;
+        object bullet;
+        GetGunState(out gunType, out gunName, out bullet);
+        app.uiController.ChangeGunUIState(gunType, gunName, bullet);
+    }
 
+    private void GetGunState(out string gunType,out string gunName,out object bullet)
+    {
+        gunType = currentGunModule.GUNTYPE;
+        gunName = currentGunModule.GUNNAME;
+        bullet = currentGunModule.GetBulletState();
+    }
 
 }
