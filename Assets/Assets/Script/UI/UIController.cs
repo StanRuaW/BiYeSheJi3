@@ -32,26 +32,27 @@ public class UIController : MyElement
         try
         {
             if (gunType == GunUIStateName.GunMagnetic)
-                ChangeToGunMagnetic(gunName, (int)bullet);
+                ChangeToGunMagnetic(gunName, (Nullable<bool>)bullet);
             else if (gunType == GunUIStateName.GunDamageAble)
-                ChangeToGunDamageable(gunName, (Nullable<bool>)bullet);
+                ChangeToGunDamageable(gunName, (int)bullet);
         }
-        catch(System.InvalidCastException)
+        catch(InvalidCastException e)
         {
-            Debug.Log("ui接受信息的时候第三个参数不对");
+            Debug.Log("枪的ui的数据转换不对");
         }
     }
 
-    private void ChangeToGunMagnetic(string gunNanme,int num)
+    private void ChangeToGunMagnetic(string gunNanme,Nullable<bool> num)
     {
         ChangeGunName(gunNanme);
-        ChangeGunNum(num);
+        ChangeMagneticType(num);
+      
     }
 
-    private void ChangeToGunDamageable(string gunName,Nullable<bool> bullet)
+    private void ChangeToGunDamageable(string gunName,int bullet)
     {
         ChangeGunName(gunName);
-        ChangeMagneticType(bullet);
+        ChangeGunNum(bullet);
     }
 
     private void ChangeGunName(string name)

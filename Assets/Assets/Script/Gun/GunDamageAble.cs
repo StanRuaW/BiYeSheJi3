@@ -25,6 +25,6 @@ public class GunDamageAble : GunPrototype
 
     override public object GetBulletState()
     {
-        return damage;
+        return CurrentBulletNum;
     }
 }
