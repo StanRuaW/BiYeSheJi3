@@ -24,6 +24,8 @@ public class GunPrototype : VRTK_InteractableObject
 
     public RightHandEventPass right;//枪激活时候要挂载到这个手上
 
+    public GameObject GunSpark;
+
     [Header("snapPoint设置")]
     [SerializeField] private Vector3 snapPosition;
     [SerializeField] private Vector3 snapRotation;
@@ -33,7 +35,7 @@ public class GunPrototype : VRTK_InteractableObject
     protected void Start()
     {
         currentBulletNum = MaxBulletNum;
-
+        GunSpark.SetActive(false);
 
     }
 
@@ -43,7 +45,7 @@ public class GunPrototype : VRTK_InteractableObject
         ResetSnapPoint();
     }*/
 
-     public void Shot()
+     virtual public void Shot()
     {
         if (!HasBullet())
         {
@@ -56,20 +58,26 @@ public class GunPrototype : VRTK_InteractableObject
         //克隆子弹，设置速度、方向、几秒之后消失
         GameObject bulletClone = Instantiate(bullet, ShotPoint.transform.position, ShotPoint.transform.rotation);
         bulletClone.SetActive(true);
+        //设置克隆子弹的属性。因为nullable数在Instantiate的时候有bug，要单独设置。
+        SetCloneBullet(bulletClone);
+
         Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
-        rb.AddForce(-bullet.transform.forward * bulletSpeed);
+        rb.AddForce(-gameObject.transform.forward * bulletSpeed);
         Destroy(bulletClone, bulletLife);
 
         currentBulletNum--;
 
+        StartCoroutine("ShowGunSpark");
         //飞出弹壳
         //音效
         //爆炸
 
+
+
         Debug.Log("shot");
     }
 
-    public void Reload()
+    virtual public void Reload()
     {
         CurrentBulletNum = MaxBulletNum;
         Debug.Log("ReLoad");
@@ -106,5 +114,22 @@ public class GunPrototype : VRTK_InteractableObject
     {
         ResetSnapPoint();
         right.GrabGun(gameObject);
+    }
+
+    //展示一小会枪口火焰
+    IEnumerator ShowGunSpark()
+    {
+        GunSpark.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        GunSpark.SetActive(false);
+    }
+
+    /// <summary>
+    /// 设置被克隆的东西的属性。好像是因为，Instantiate复制的时候，如果被复制的物体有nullable数，这个数会被重置为null。。。所以在这里单独设置一次。而且直接修改原先的子弹prefeb也确实不妥
+    /// </summary>
+    /// <param name="clone"></param>
+    protected virtual void SetCloneBullet(GameObject clone)
+    {
+
     }
 }

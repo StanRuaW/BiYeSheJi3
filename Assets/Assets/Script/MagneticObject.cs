@@ -24,9 +24,12 @@ public class MagneticObject : MyElement
         get { return isn; }
         set
         {
+            Debug.Log("想换磁性");
+            Debug.Log( ((isn.Equals(true))?"N":"S/null") + "." + ((value==true) ? "N" : "S/null"));
             if (value != isn)
             {
                 isn = value;
+                Debug.Log("换了磁性");
                 ChangeCollor();
                 //PlaySound();
                 //PlayAnime();
@@ -47,7 +50,9 @@ public class MagneticObject : MyElement
     private void ChangeCollor()
     {
         if (isn == true)
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            //gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            gameObject.GetComponent<Renderer>().sharedMaterial.
+
         else if(isn==false)
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         else if(isn==null)

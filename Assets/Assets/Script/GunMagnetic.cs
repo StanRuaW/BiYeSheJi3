@@ -5,9 +5,9 @@ using UnityEngine;
 public class GunMagnetic :GunPrototype
 {
     // Start is called before the first frame update
-     void Start()
+    new void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
@@ -16,10 +16,8 @@ public class GunMagnetic :GunPrototype
         
     }
 
-    new public void Shot()
+    override protected void SetCloneBullet(GameObject clone)
     {
-        base.Shot();
-
-
+        clone.GetComponent<BulletMagnetic>().isn = false;
     }
 }

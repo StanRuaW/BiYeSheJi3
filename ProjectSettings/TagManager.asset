@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MyApplication
   - gun
+  - MagneticObject
+  - Enemy
   layers:
   - Default
   - TransparentFX
