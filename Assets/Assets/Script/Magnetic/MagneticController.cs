@@ -43,7 +43,7 @@ public class MagneticController : MyElement
                         {  //计算并添加磁力
                             Vector3 force1To2 = ComputeMagneticForce(o1, o2, direction);
                             o2.GetComponent<Rigidbody>().AddForce(force1To2);
-                            Debug.Log("力的大小"+ force1To2.x+","+ force1To2.y +"," + force1To2.z);
+                            //Debug.Log("力的大小"+ force1To2.x+","+ force1To2.y +"," + force1To2.z);
                         }
                     }
                 }

@@ -12,4 +12,5 @@ public class MyEvent
     public static string TryChangeGun = "try.change.gun";
     public static string TryReloadGun = "try.reload.gun";
     public static string OnNewGunPickUp = "on.new.gun.pick.up";
+    public static string TryChangeGunState = "try.change.gun.state";
 }

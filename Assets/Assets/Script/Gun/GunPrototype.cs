@@ -166,4 +166,5 @@ public class GunPrototype : VRTK_InteractableObject
         return null;
     }
 
+    public virtual void ChangeGunState() { }
 }

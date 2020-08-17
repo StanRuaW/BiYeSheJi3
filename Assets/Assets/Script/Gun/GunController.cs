@@ -36,6 +36,10 @@ public class GunController : MyElement
             case "try.reload.gun":
                 Reload();
                 break;
+            case "try.change.gun.state":
+                ChangeGunState();
+
+                break;
            /* case "on.new.gun.pick.up":
                 AddNewGun((GameObject)obj);
                 break;
@@ -83,7 +87,7 @@ public class GunController : MyElement
         }
         guns[currentGunNum].SetActive(false);
 
-
+        Debug.Log("我切枪了啊");
         currentGunNum = num;
         guns[currentGunNum].SetActive(true);
         currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
@@ -99,12 +103,7 @@ public class GunController : MyElement
     /// </summary>
     public bool ChangeGun()
     {
-        if (currentGunNum + 1 == guns.Count)
-            currentGunNum = 0;
-        else
-            currentGunNum++;
-
-        return ChangeGun(currentGunNum);
+        return ChangeGun(currentGunNum+1==guns.Count?0:currentGunNum+1);
         /* if (guns.Count == 0)
              return;
          ChangeGunState();
@@ -147,4 +146,9 @@ public class GunController : MyElement
         guns.Remove(gun);
         ChangeGun(currentGunNum == 0 ? 0 : currentGunNum - 1);
     }*/
+    void ChangeGunState()
+    {
+        currentGunModule.ChangeGunState();
+        SendGunStateToUI();
+    }
 }

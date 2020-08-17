@@ -26,6 +26,7 @@ public class RightHandEventPass : MyElement
         controllerEvents.TriggerPressed += SendTryFireMessage;
         controllerEvents.ButtonTwoPressed += SendReloadMessage;
         controllerEvents.TouchpadPressed += SendChangeGunMessage;
+        controllerEvents.StartMenuPressed += SendChangeGunStateMessage;
 
     }
 
@@ -51,7 +52,10 @@ public class RightHandEventPass : MyElement
     {
         app.Notify(MyEvent.TryReloadGun, gameObject, e);
     }
-
+    private void SendChangeGunStateMessage(object sender, ControllerInteractionEventArgs e)
+    {
+        app.Notify(MyEvent.TryChangeGunState, gameObject, e);
+    }
     /// <summary>
     /// 把枪绑定到手上，切枪时调用
     /// </summary>

@@ -1078,9 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3325c6efd3e273d4aa10d5b3205be039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeIsN: 0
-  heee: 0
-  MessRatio: 20
+  MessRatio: 5
 --- !u!65 &667647822
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1258,9 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3325c6efd3e273d4aa10d5b3205be039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeIsN: 0
-  heee: 0
-  MessRatio: 20
+  MessRatio: 5
 --- !u!65 &730471680
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3555,7 +3551,7 @@ MonoBehaviour:
   usingState: 0
   bullet: {fileID: 884829352}
   Hand: {fileID: 1105899483}
-  bulletSpeed: 10
+  bulletSpeed: 30
   bulletLife: 10
   ShotPoint: {fileID: 248655097}
   MaxBulletNum: 4

@@ -24,11 +24,23 @@ public class GunMagnetic :GunPrototype
 
     override protected void SetCloneBullet(GameObject clone)
     {
-        clone.GetComponent<BulletMagnetic>().isn = false;
+        clone.GetComponent<BulletMagnetic>().isn = isN;
     }
 
     override public object GetBulletState()
     {
         return isN;
     }
+
+    public override void ChangeGunState()
+    {
+        base.ChangeGunState();
+        if (isN == true)
+            isN = false;
+        else if (isN == false)
+            isN = null;
+        else
+            isN = true;
+    }
 }
+
