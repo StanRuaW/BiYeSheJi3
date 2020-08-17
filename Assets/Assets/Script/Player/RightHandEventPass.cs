@@ -27,7 +27,6 @@ public class RightHandEventPass : MyElement
         controllerEvents.ButtonTwoPressed += SendReloadMessage;
         controllerEvents.TouchpadPressed += SendChangeGunMessage;
 
-
     }
 
     protected void OnDisable()
@@ -35,6 +34,7 @@ public class RightHandEventPass : MyElement
         controllerEvents.TriggerPressed -= SendTryFireMessage;
         controllerEvents.ButtonTwoPressed -= SendReloadMessage;
         controllerEvents.TouchpadPressed -= SendChangeGunMessage;
+
     }
 
     private void SendTryFireMessage(object sender, ControllerInteractionEventArgs e)
@@ -52,6 +52,10 @@ public class RightHandEventPass : MyElement
         app.Notify(MyEvent.TryReloadGun, gameObject, e);
     }
 
+    /// <summary>
+    /// 把枪绑定到手上，切枪时调用
+    /// </summary>
+    /// <param name="obj"></param>
     public void GrabGun(GameObject obj)
     {
         interActGrab.ForceRelease();
@@ -60,5 +64,4 @@ public class RightHandEventPass : MyElement
         interActTouch.ForceTouch(obj);
         interActGrab.AttemptGrab();
     }
-
 }

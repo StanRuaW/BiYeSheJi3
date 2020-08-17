@@ -1189,6 +1189,7 @@ MonoBehaviour:
   magneticController: {fileID: 338954787}
   playerController: {fileID: 1281891583}
   uiController: {fileID: 1406260889}
+  gunController: {fileID: 2104038639}
 --- !u!4 &686329342
 Transform:
   m_ObjectHideFlags: 0
@@ -1919,7 +1920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0d3d0563fb79341b24188d2a73d26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunController: {fileID: 2104038639}
 --- !u!1 &1327669657
 GameObject:
   m_ObjectHideFlags: 0

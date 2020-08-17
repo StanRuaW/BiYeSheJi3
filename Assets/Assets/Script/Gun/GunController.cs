@@ -21,6 +21,30 @@ public class GunController : MyElement
         SendGunStateToUI();
     }
 
+    override public void OnNotification(string eventName, UnityEngine.Object obj, params object[] data)
+    {
+        switch (eventName)
+        {
+            case "try.shot":
+                Shot();
+                break;
+
+            case "try.change.gun":
+                ChangeGun();
+                break;
+
+            case "try.reload.gun":
+                Reload();
+                break;
+           /* case "on.new.gun.pick.up":
+                AddNewGun((GameObject)obj);
+                break;
+            case "on.gun.remove":
+                RemoveGun((GameObject)obj);
+                break;*/
+        }
+    }
+
     void Update()
     {
         
@@ -45,32 +69,52 @@ public class GunController : MyElement
         SendGunStateToUI();
     }
 
-    public void ChangeGun()
+    public bool ChangeGun(int num)
     {
+        if (num >= guns.Count || num < 0)
+        {
+            Debug.LogError("切枪切大了");
+            return false;
+        }
         if (guns.Count == 0)
-            return;
-        ChangeGunState();
-        currentGunModule.GrabThisGun();
+        {
+            Debug.Log("无枪");
+            return false;
+        }
+        guns[currentGunNum].SetActive(false);
 
-        Debug.Log("接收到了换枪信息");
+
+        currentGunNum = num;
+        guns[currentGunNum].SetActive(true);
+        currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
+
+        currentGunModule.GrabThisGun();
         SendGunStateToUI();
+        return true;
+
     }
 
     /// <summary>
-    /// 切换当前枪的引用和序号，不用的枪隐藏，用的枪激活
+    /// 切到下一把枪
     /// </summary>
-    private void  ChangeGunState()
+    public bool ChangeGun()
     {
-        guns[currentGunNum].SetActive(false);
-
         if (currentGunNum + 1 == guns.Count)
             currentGunNum = 0;
         else
             currentGunNum++;
 
-       guns[currentGunNum].SetActive(true);
-        currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
+        return ChangeGun(currentGunNum);
+        /* if (guns.Count == 0)
+             return;
+         ChangeGunState();
+         currentGunModule.GrabThisGun();
+
+         Debug.Log("接收到了换枪信息");
+         SendGunStateToUI();*/
     }
+
+
 
     private void SendGunStateToUI()
     {
@@ -88,4 +132,19 @@ public class GunController : MyElement
         bullet = currentGunModule.GetBulletState();
     }
 
+    /// <summary>
+    /// /////
+    /// </summary>
+    /// <param name="newGun"></param>
+    /*private void AddNewGun(GameObject newGun)
+    {
+        guns.Add(newGun);
+        ChangeGun(guns.Count - 1);
+    }*/
+
+    /*private void RemoveGun(GameObject gun)
+    {
+        guns.Remove(gun);
+        ChangeGun(currentGunNum == 0 ? 0 : currentGunNum - 1);
+    }*/
 }

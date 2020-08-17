@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MyElement
 {
-    public GunController gunController;
 
     // Start is called before the first frame update
     void Start()
@@ -21,23 +20,6 @@ public class PlayerController : MyElement
     {
 
     }
-    override public void OnNotification(string eventName, UnityEngine.Object obj, params object[] data)
-    {
-        switch (eventName)
-        {
-            case "try.shot":
-                gunController.Shot();
-
-                break;
-
-            case "try.change.gun":
-                gunController.ChangeGun();
-                break;
-
-            case "try.reload.gun":
-                gunController.Reload();
-                break;
-        }
-    }
+    
 
 }
