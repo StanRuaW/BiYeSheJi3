@@ -42,8 +42,11 @@ public class MagneticController : MyElement
                         if (o1.isN != null && o2.isN != null)
                         {  //计算并添加磁力
                             Vector3 force1To2 = ComputeMagneticForce(o1, o2, direction);
-                            o2.GetComponent<Rigidbody>().AddForce(force1To2);
-                            //Debug.Log("力的大小"+ force1To2.x+","+ force1To2.y +"," + force1To2.z);
+                             o2.GetComponent<Rigidbody>().AddForce(force1To2);
+                            // o2.transform.Translate(force1To2*Time.deltaTime);
+                            //o2.GetComponent<Rigidbody>().velocity += force1To2;
+                            //Debug.Log("force1To2=" + force1To2);
+                                Debug.Log("力的大小"+ force1To2.x+","+ force1To2.y +"," + force1To2.z);
                         }
                     }
                 }

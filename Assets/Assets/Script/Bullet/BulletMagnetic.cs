@@ -26,6 +26,13 @@ public class BulletMagnetic : BulletPrototype
             BulletImpact.SetActive(true);
             Destroy(gameObject,0.2f);
         }
+        else if(collision.gameObject.tag == "MagneticObjectOuterFrame")
+        {
+            collision.gameObject.GetComponent<MagneticObjectOutFrame>().SendIsNToSource(isn);
+            BulletImpact.SetActive(true);
+            Destroy(gameObject, 0.2f);
+        }
         base.OnCollisionEnter(collision);
     }
+
 }

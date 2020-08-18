@@ -25,6 +25,7 @@ public class MagneticObject : MyElement
             {
                 isn = value;
                 ChangeCollor();
+                Debug.Log("磁性被修改了");
                 //PlaySound();
                 //PlayAnime();
                 //PlayShader();
@@ -34,7 +35,12 @@ public class MagneticObject : MyElement
 
 
     public float Mess{
-        get{return gameObject.GetComponent<Rigidbody>().mass*MessRatio;}}
+        get
+        {
+            return MessRatio;
+            //return gameObject.GetComponent<Rigidbody>().mass*MessRatio;}
+        }
+    }
 
     private void Start()
     {
@@ -60,5 +66,8 @@ public class MagneticObject : MyElement
         app.magneticController.LogOut(this);
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        //if(other.gameObject.tag=="Player")
+    }
 }
