@@ -32,6 +32,8 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //TODO：可能会出现玩家在磁铁上传送导致父子层级出问题的bug
+        //可能会出现玩家在磁铁上传送导致父子层级出问题的bug
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("player出来了");
