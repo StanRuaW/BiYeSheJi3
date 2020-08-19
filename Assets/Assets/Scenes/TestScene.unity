@@ -2217,7 +2217,7 @@ MonoBehaviour:
   enableTeleport: 1
   targetListPolicy: {fileID: 897614063}
   destination: {fileID: 1714928719}
-  player: {fileID: 1281891582}
+  player: {fileID: 1105899484}
   basicTelepot: {fileID: 897614064}
 --- !u!65 &788553808
 BoxCollider:
@@ -5056,13 +5056,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714928718}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
   m_LocalPosition: {x: 1.64, y: 0.172, z: -2.607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1383149557}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!1 &1743380451 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1391022766006510, guid: be540b97364be0a4890e39e62ac89ed1,

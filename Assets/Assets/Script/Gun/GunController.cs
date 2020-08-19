@@ -12,13 +12,16 @@ public class GunController : MyElement
     private int currentGunNum;
     private GunPrototype currentGunModule;
 
+    //因为start阶段不能grab，因此在update的第一帧抓枪
+    private bool isGunGrabOnStart = false;
 
     void Start()
     {
         currentGunNum = 0;
         currentGunModule = guns[currentGunNum].GetComponent<GunPrototype>();
 
-        SendGunStateToUI();
+        //SendGunStateToUI();
+        //ChangeGun(currentGunNum);
     }
 
     override public void OnNotification(string eventName, UnityEngine.Object obj, params object[] data)
@@ -51,7 +54,11 @@ public class GunController : MyElement
 
     void Update()
     {
-        
+        //TODO:因为start不能grab，因此在第一帧抓枪，有隐藏bug的可能性，开局0.1秒之后抓枪
+        if (isGunGrabOnStart == false)
+        {
+            StartCoroutine("StartGrabGun");
+        }
     }
 
     public void Shot()
@@ -150,5 +157,13 @@ public class GunController : MyElement
     {
         currentGunModule.ChangeGunState();
         SendGunStateToUI();
+    }
+
+    IEnumerator StartGrabGun()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ChangeGun(currentGunNum);
+        isGunGrabOnStart = true;
+       // Debug.Log("我开局爪子刀枪了");
     }
 }
