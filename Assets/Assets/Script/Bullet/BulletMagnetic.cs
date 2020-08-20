@@ -18,21 +18,17 @@ public class BulletMagnetic : BulletPrototype
 
     }
 
-     override protected void OnCollisionEnter(Collision collision)
+     override protected void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "MagneticObject")
         {
             collision.gameObject.GetComponent<MagneticObject>().isN = isn;
-            BulletImpact.SetActive(true);
-            Destroy(gameObject,0.2f);
         }
         else if(collision.gameObject.tag == "MagneticObjectOuterFrame")
         {
             collision.gameObject.GetComponent<MagneticObjectOutFrame>().SendIsNToSource(isn);
-            BulletImpact.SetActive(true);
-            Destroy(gameObject, 0.2f);
         }
-        base.OnCollisionEnter(collision);
+        base.OnTriggerEnter(collision);
     }
 
 }

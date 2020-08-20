@@ -25,6 +25,7 @@ public class GunPrototype : VRTK_InteractableObject
 
     public GameObject GunSpark;
 
+    //TODO：可以做个设置，切枪的时候重置开枪间隔
     public float shotInterval;
     private float lastShotTime;
 

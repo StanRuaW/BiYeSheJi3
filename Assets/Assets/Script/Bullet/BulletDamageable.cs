@@ -17,14 +17,12 @@ public class BulletDamageable : BulletPrototype
         
     }
 
-    override protected void OnCollisionEnter(Collision collision)
+    override protected void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Enemy>().GetDamage(damage);
-            BulletImpact.SetActive(true);
-            Destroy(gameObject, 0.2f);
         }
-        base.OnCollisionEnter(collision);
+        base.OnTriggerEnter(collision);
     }
 }

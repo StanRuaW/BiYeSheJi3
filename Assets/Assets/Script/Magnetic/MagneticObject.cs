@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
-
+//TODO:可以做个检测，看父类的scale变没变
 /// <summary>
 /// 磁性物体，分为N极、S极、无极三个状态。磁力的处理由controller控制
 /// </summary>

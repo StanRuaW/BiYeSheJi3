@@ -56,7 +56,7 @@ public class MagneticController : MyElement
     }
 
    
-
+    //TODO公式可以做优化，具体好好的调试
     /// <summary>
     /// 计算得到o1对o2的力的向量，公式为=distanceRatio * distance + mess1 * mess1 * mess2 * messratio
     /// </summary>
@@ -99,6 +99,7 @@ public class MagneticController : MyElement
     /// <param name="obj"></param>
     public void LogOut(MagneticObject obj)
     {
+        //TODO：游戏结束时候这里会空引用，但是应该不影响
         mObjects.Remove(obj);
     }
 }

@@ -12,6 +12,7 @@ public class GunController : MyElement
     private int currentGunNum;
     private GunPrototype currentGunModule;
 
+    //TODO:还没设置不能扔枪
     //因为start阶段不能grab，因此在update的第一帧抓枪
     private bool isGunGrabOnStart = false;
 

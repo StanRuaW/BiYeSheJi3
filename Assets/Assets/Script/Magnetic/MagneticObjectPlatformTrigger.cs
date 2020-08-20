@@ -7,11 +7,20 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
     //这里看能不能改成直接根据tag获取，省的每次都要绑定
     [SerializeField] private Transform Player_Parent;
     [SerializeField] private Transform Player;
+    [SerializeField] private float Thick;
+    [SerializeField] private float MidSpaceLength;
+
+    //TODO这里命名有歧义
+    private BoxCollider myCollider;
     private Transform my;
+
+    [SerializeField] GameObject myParent;
     // Start is called before the first frame update
     void Start()
     {
         my = gameObject.transform;
+        myCollider = gameObject.GetComponent<BoxCollider>();
+        SetTriggerShape();
     }
 
     // Update is called once per frame
@@ -39,5 +48,14 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
             Debug.Log("player出来了");
             Player.SetParent(Player_Parent);
         }
+    }
+
+    private void SetTriggerShape()
+    {
+        float colliderScaleY = (myParent.transform.localScale.y + Thick) / myParent.transform.localScale.y;
+        float colliderScaleX = (myParent.transform.localScale.x - MidSpaceLength) / myParent.transform.localScale.x;
+        float colliderScaleZ = (myParent.transform.localScale.z - MidSpaceLength) / myParent.transform.localScale.z;
+        myCollider.size = new Vector3(colliderScaleX, colliderScaleY, colliderScaleZ);
+        myCollider.center = new Vector3(0, 0 + (colliderScaleY - 1) / 2, 0);
     }
 }
