@@ -12,6 +12,7 @@ TagManager:
   - Room
   - Platform
   - MagneticObjectOuterFrame
+  - MagneticRange
   layers:
   - Default
   - TransparentFX

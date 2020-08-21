@@ -22,39 +22,6 @@ public class MagneticController : MyElement
         mObjects = new List<MagneticObject>();
     }
 
-    private void FixedUpdate()
-    {
-
-        //计算所有物体之间的磁力并添加
-        //遍历，做两层循环，确保每个物体都会和其他所有物体计算一次磁力
-        foreach (MagneticObject o1 in mObjects)
-        {
-            foreach (MagneticObject o2 in mObjects)
-            {
-                //如果是同一个物体,不做计算
-                if (mObjects.IndexOf(o1) != mObjects.IndexOf(o2))
-                {
-                    //如果太远了,就不做计算
-                    Vector3 direction = o1.transform.position - o2.transform.position;
-                    if (direction.magnitude < MaxDistance)
-                    {
-                        //如果有磁体没有磁力，就不做计算
-                        if (o1.isN != null && o2.isN != null)
-                        {  //计算并添加磁力
-                            Vector3 force1To2 = ComputeMagneticForce(o1, o2, direction);
-                             o2.GetComponent<Rigidbody>().AddForce(force1To2);
-                            // o2.transform.Translate(force1To2*Time.deltaTime);
-                            //o2.GetComponent<Rigidbody>().velocity += force1To2;
-                            //Debug.Log("force1To2=" + force1To2);
-                                Debug.Log("力的大小"+ force1To2.x+","+ force1To2.y +"," + force1To2.z);
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
    
     //TODO公式可以做优化，具体好好的调试
     /// <summary>
@@ -63,26 +30,7 @@ public class MagneticController : MyElement
     /// <param name="o1"></param>
     /// <param name="o2"></param>
     /// <returns></returns>
-    public Vector3 ComputeMagneticForce(MagneticObject o1, MagneticObject o2,Vector3 direction)
-    {
-        float force = Time.fixedDeltaTime * (distanceRatio / direction.magnitude + Mathf.Pow(o1.Mess, 2) * o2.Mess * MessRatio);
-
-        if (force > MaxForce)
-            force = MaxForce;
-        else if (force < MinForce)
-            force = MinForce;
-
-        Vector3 f = direction.normalized * force;
-
-        Nullable<bool> bool1 = o1.isN;
-        Nullable<bool> bool2 = o2.isN;
-
-        if (bool1 != bool2)
-            return f;
-        else
-            return -f;
-
-    }
+  
     /// <summary>
     /// 磁体awake时候磁体会调用这个来注册到list里面
     /// </summary>
@@ -103,3 +51,5 @@ public class MagneticController : MyElement
         mObjects.Remove(obj);
     }
 }
+
+

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 /// <summary>
 /// 枪控制器，有枪们的引用，负责枪械相关事件，从controller哪里接受事件
@@ -168,3 +169,6 @@ public class GunController : MyElement
        // Debug.Log("我开局爪子刀枪了");
     }
 }
+
+
+

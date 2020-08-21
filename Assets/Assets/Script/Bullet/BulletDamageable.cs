@@ -26,3 +26,4 @@ public class BulletDamageable : BulletPrototype
         base.OnTriggerEnter(collision);
     }
 }
+

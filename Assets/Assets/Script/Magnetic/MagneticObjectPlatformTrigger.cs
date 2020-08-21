@@ -10,15 +10,20 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
     [SerializeField] private float Thick;
     [SerializeField] private float MidSpaceLength;
 
-    //TODO这里命名有歧义
     private BoxCollider myCollider;
-    private Transform my;
 
-    [SerializeField] GameObject myParent;
+    //这里命名有问题，不是myparent，是我的。。主任？？？目标？？？不知道咋说
+    [SerializeField] Transform myParent;
     // Start is called before the first frame update
     void Start()
     {
-        my = gameObject.transform;
+        //TODO：这里根据名字查找被许多说过是强耦合，但是我觉得没问题，这种只有一个的东西肯定是可以的
+        Player_Parent = GameObject.Find("PlayerParent").transform;
+        Player = GameObject.Find("VRTK SDK").transform;
+        //TODO:这里也算是强耦合了，先这样
+        myParent = gameObject.transform.parent.GetChild(0);
+        //myParent = gameObject.transform.parent;
+
         myCollider = gameObject.GetComponent<BoxCollider>();
         SetTriggerShape();
     }
@@ -34,7 +39,7 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("player进来了");
-            Player.SetParent(my);
+            Player.SetParent(transform);
                 //最好做个检测有没有多个物体同时绑定了player
         }
     }
@@ -52,10 +57,11 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
 
     private void SetTriggerShape()
     {
-        float colliderScaleY = (myParent.transform.localScale.y + Thick) / myParent.transform.localScale.y;
-        float colliderScaleX = (myParent.transform.localScale.x - MidSpaceLength) / myParent.transform.localScale.x;
-        float colliderScaleZ = (myParent.transform.localScale.z - MidSpaceLength) / myParent.transform.localScale.z;
+        float colliderScaleY = (myParent.localScale.y + Thick) ;
+        float colliderScaleX = (myParent.localScale.x - MidSpaceLength) ;
+        float colliderScaleZ = (myParent.localScale.z - MidSpaceLength);
         myCollider.size = new Vector3(colliderScaleX, colliderScaleY, colliderScaleZ);
         myCollider.center = new Vector3(0, 0 + (colliderScaleY - 1) / 2, 0);
     }
 }
+

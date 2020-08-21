@@ -23,7 +23,6 @@ public class BulletPrototype : MonoBehaviour
     }
     virtual protected void OnTriggerEnter(Collider other)
     {
-        Debug.Log("基类碰上了");
         BulletImpact.SetActive(true);
         Destroy(gameObject, 0.2f);
     }

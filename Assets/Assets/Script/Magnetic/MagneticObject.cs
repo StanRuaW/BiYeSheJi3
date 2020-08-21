@@ -10,11 +10,18 @@ using UnityEngine.Rendering.HighDefinition;
 /// </summary>
 public class MagneticObject : MyElement
 {
-    public float MessRatio;
+    public float distanceRatio;//距离对磁力的影响系数
+    public float MessRatio;//质量对磁力的影响系数
+    public float MaxForce;//最大磁力，以防物体过近然后弹飞
+    public float MinForce;//最小磁力，太小了谁都不动怪尴尬
+    public float RangeDistance;//最大距离，超过这个距离不做计算
 
     [SerializeField]
     private Nullable<bool> isn;
-    
+
+    private float mass;
+
+    [SerializeField] private GameObject magneticRange;
 
     ///三个状态，是N极，不是N极，不含有磁力
     public Nullable<bool> isN {
@@ -26,6 +33,7 @@ public class MagneticObject : MyElement
                 isn = value;
                 ChangeCollor();
                 Debug.Log("磁性被修改了");
+                SetMagneticRange();
                 //PlaySound();
                 //PlayAnime();
                 //PlayShader();
@@ -34,17 +42,13 @@ public class MagneticObject : MyElement
     }
 
 
-    public float Mess{
-        get
-        {
-            return MessRatio;
-            //return gameObject.GetComponent<Rigidbody>().mass*MessRatio;}
-        }
-    }
-
     private void Start()
     {
         app.magneticController.RegistObject(this);
+        mass = gameObject.GetComponent<Rigidbody>().mass;
+
+        SetMagneticRange();
+
     }
 
     private void ChangeCollor()
@@ -66,8 +70,65 @@ public class MagneticObject : MyElement
         app.magneticController.LogOut(this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void AddMagneticForce(GameObject other)
     {
-        //if(other.gameObject.tag=="Player")
+        Vector3 force = ComputeMagneticForce(gameObject.GetComponent<MagneticObject>(), other.GetComponent<MagneticObject>());
+        Debug.Log(force);
+        other.gameObject.GetComponent<Rigidbody>().AddForce(force);
+    }
+
+    private Vector3 ComputeMagneticForce(MagneticObject o1, MagneticObject o2)
+    {
+        if (o1.isN == null || o2.isN == null)
+            return new Vector3(0, 0, 0);
+        if (o1.Equals(o2))
+            return new Vector3(0, 0, 0);
+
+        Vector3 direction = o1.gameObject.transform.position - o2.gameObject.transform.position;
+
+        float force = Time.fixedDeltaTime * (distanceRatio / direction.magnitude + Mathf.Pow(o1.mass, 2) * o2.mass * MessRatio);
+
+        if (force > MaxForce)
+            force = MaxForce;
+        else if (force < MinForce)
+            force = MinForce;
+
+        Vector3 f = direction.normalized * force;
+
+        Nullable<bool> bool1 = o1.isN;
+        Nullable<bool> bool2 = o2.isN;
+
+        if (bool1 != bool2)
+            return f;
+        else
+            return -f;
+    }
+
+    private void SetMagneticRange()
+    {
+        float X = transform.localScale.x * (RangeDistance + 1f);
+        float Y = transform.localScale.y * (RangeDistance + 1f);
+        float Z = transform.localScale.z * (RangeDistance + 1f);
+
+        magneticRange.GetComponent<MagneticRange>().SetScale(X,Y,Z);
+        ActiveRange();
+
+    }
+
+    private void ActiveRange()
+    {
+        if (isn == null)
+            magneticRange.GetComponent<MagneticRange>().HideMaterial();
+        else
+        {
+            magneticRange.GetComponent<MagneticRange>().ShowMaterial();
+            if (isn == true)
+                magneticRange.GetComponent<MagneticRange>().ChangeColor(Color.blue);
+            else
+            { magneticRange.GetComponent<MagneticRange>().ChangeColor(Color.red);
+                Debug.Log("我进来了");
+            }
+
+        }
     }
 }
