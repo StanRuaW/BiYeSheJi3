@@ -28,6 +28,11 @@ public class BulletMagnetic : BulletPrototype
         {
             collision.gameObject.GetComponent<MagneticObjectOutFrame>().SendIsNToSource(isn);
         }
+        else if(collision.gameObject.tag=="MagneticRange")
+        {
+            Debug.Log("碰到磁力范围");
+            return;
+        }
         base.OnTriggerEnter(collision);
     }
 

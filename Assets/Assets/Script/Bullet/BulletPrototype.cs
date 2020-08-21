@@ -24,6 +24,7 @@ public class BulletPrototype : MonoBehaviour
     virtual protected void OnTriggerEnter(Collider other)
     {
         BulletImpact.SetActive(true);
+        //播放爆炸动画
         Destroy(gameObject, 0.2f);
     }
 

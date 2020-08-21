@@ -33,7 +33,6 @@ public class MagneticRange : MonoBehaviour
 
         if (other.tag == "MagneticObject")
         {
-            Debug.Log("1");
             myParent.gameObject.GetComponent<MagneticObject>().AddMagneticForce(other.gameObject);
         }
     }

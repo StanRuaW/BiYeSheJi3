@@ -22,7 +22,14 @@ public class MagneticController : MyElement
         mObjects = new List<MagneticObject>();
     }
 
-   
+    private void Start()
+    {
+        foreach(MagneticObject m in mObjects)
+        {
+            m.SetCalculateParam(distanceRatio, MessRatio, MaxForce, MinForce, MaxDistance);
+        }
+    }
+
     //TODO公式可以做优化，具体好好的调试
     /// <summary>
     /// 计算得到o1对o2的力的向量，公式为=distanceRatio * distance + mess1 * mess1 * mess2 * messratio
@@ -30,7 +37,7 @@ public class MagneticController : MyElement
     /// <param name="o1"></param>
     /// <param name="o2"></param>
     /// <returns></returns>
-  
+
     /// <summary>
     /// 磁体awake时候磁体会调用这个来注册到list里面
     /// </summary>

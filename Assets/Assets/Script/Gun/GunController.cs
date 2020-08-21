@@ -113,13 +113,6 @@ public class GunController : MyElement
     public bool ChangeGun()
     {
         return ChangeGun(currentGunNum+1==guns.Count?0:currentGunNum+1);
-        /* if (guns.Count == 0)
-             return;
-         ChangeGunState();
-         currentGunModule.GrabThisGun();
-
-         Debug.Log("接收到了换枪信息");
-         SendGunStateToUI();*/
     }
 
 
@@ -140,21 +133,6 @@ public class GunController : MyElement
         bullet = currentGunModule.GetBulletState();
     }
 
-    /// <summary>
-    /// /////
-    /// </summary>
-    /// <param name="newGun"></param>
-    /*private void AddNewGun(GameObject newGun)
-    {
-        guns.Add(newGun);
-        ChangeGun(guns.Count - 1);
-    }*/
-
-    /*private void RemoveGun(GameObject gun)
-    {
-        guns.Remove(gun);
-        ChangeGun(currentGunNum == 0 ? 0 : currentGunNum - 1);
-    }*/
     void ChangeGunState()
     {
         currentGunModule.ChangeGunState();
@@ -163,10 +141,10 @@ public class GunController : MyElement
 
     IEnumerator StartGrabGun()
     {
+        isGunGrabOnStart = true;
         yield return new WaitForSeconds(0.1f);
         ChangeGun(currentGunNum);
-        isGunGrabOnStart = true;
-       // Debug.Log("我开局爪子刀枪了");
+
     }
 }
 

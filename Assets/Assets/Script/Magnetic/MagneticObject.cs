@@ -10,12 +10,14 @@ using UnityEngine.Rendering.HighDefinition;
 /// </summary>
 public class MagneticObject : MyElement
 {
+    [Header("磁力计算参数")]
     public float distanceRatio;//距离对磁力的影响系数
     public float MessRatio;//质量对磁力的影响系数
     public float MaxForce;//最大磁力，以防物体过近然后弹飞
     public float MinForce;//最小磁力，太小了谁都不动怪尴尬
     public float RangeDistance;//最大距离，超过这个距离不做计算
 
+    [Header("其他")]
     [SerializeField]
     private Nullable<bool> isn;
 
@@ -24,7 +26,8 @@ public class MagneticObject : MyElement
     [SerializeField] private GameObject magneticRange;
 
     ///三个状态，是N极，不是N极，不含有磁力
-    public Nullable<bool> isN {
+    public Nullable<bool> isN
+    {
         get { return isn; }
         set
         {
@@ -54,9 +57,7 @@ public class MagneticObject : MyElement
     private void ChangeCollor()
     {
         if (isn == true)
-            //gameObject.GetComponent<Renderer>().material.color = Color.blue;
             gameObject.GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("_BaseColor"), Color.blue);
-
         else if (isn == false)
             gameObject.GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("_BaseColor"), Color.red);
         else if (isn == null)
@@ -73,7 +74,7 @@ public class MagneticObject : MyElement
     public void AddMagneticForce(GameObject other)
     {
         Vector3 force = ComputeMagneticForce(gameObject.GetComponent<MagneticObject>(), other.GetComponent<MagneticObject>());
-        Debug.Log(force);
+
         other.gameObject.GetComponent<Rigidbody>().AddForce(force);
     }
 
@@ -98,6 +99,8 @@ public class MagneticObject : MyElement
         Nullable<bool> bool1 = o1.isN;
         Nullable<bool> bool2 = o2.isN;
 
+        Debug.Log(f + "," + o1.gameObject.name + "," + o2.gameObject.name);
+
         if (bool1 != bool2)
             return f;
         else
@@ -110,7 +113,7 @@ public class MagneticObject : MyElement
         float Y = transform.localScale.y * (RangeDistance + 1f);
         float Z = transform.localScale.z * (RangeDistance + 1f);
 
-        magneticRange.GetComponent<MagneticRange>().SetScale(X,Y,Z);
+        magneticRange.GetComponent<MagneticRange>().SetScale(X, Y, Z);
         ActiveRange();
 
     }
@@ -125,10 +128,17 @@ public class MagneticObject : MyElement
             if (isn == true)
                 magneticRange.GetComponent<MagneticRange>().ChangeColor(Color.blue);
             else
-            { magneticRange.GetComponent<MagneticRange>().ChangeColor(Color.red);
-                Debug.Log("我进来了");
-            }
+                magneticRange.GetComponent<MagneticRange>().ChangeColor(Color.red);
 
         }
+    }
+
+    public void SetCalculateParam(float dR, float mR, float minF, float maxF, float rD)
+    {
+        distanceRatio = dR;
+        MessRatio = mR;
+        MaxForce = maxF;
+        MinForce = minF;
+        RangeDistance = rD;
     }
 }

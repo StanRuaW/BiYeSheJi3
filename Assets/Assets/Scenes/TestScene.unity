@@ -560,6 +560,11 @@ PrefabInstance:
       propertyPath: RangeDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3209622429083425049, guid: a91e369bde961bc449541a21a8e2432e,
+        type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
     - target: {fileID: 3209622430937841180, guid: a91e369bde961bc449541a21a8e2432e,
         type: 3}
       propertyPath: m_Name
@@ -1170,11 +1175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289af589e0b891c43baf43c7a692b6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceRatio: 5
-  MessRatio: 2
-  MaxForce: 10
-  MinForce: 1
-  MaxDistance: 100
+  distanceRatio: 10
+  MessRatio: 10
+  MaxForce: 20
+  MinForce: 5
+  MaxDistance: 1
 --- !u!1 &340972478
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,6 +3882,16 @@ PrefabInstance:
         type: 3}
       propertyPath: RangeDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209622429083425044, guid: a91e369bde961bc449541a21a8e2432e,
+        type: 3}
+      propertyPath: MinForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209622429083425049, guid: a91e369bde961bc449541a21a8e2432e,
+        type: 3}
+      propertyPath: m_Name
+      value: Body1
       objectReference: {fileID: 0}
     - target: {fileID: 3209622430937841180, guid: a91e369bde961bc449541a21a8e2432e,
         type: 3}
