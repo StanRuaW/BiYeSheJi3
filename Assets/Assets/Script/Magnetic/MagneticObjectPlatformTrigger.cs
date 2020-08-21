@@ -7,6 +7,7 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
     //这里看能不能改成直接根据tag获取，省的每次都要绑定
     [SerializeField] private Transform Player_Parent;
     [SerializeField] private Transform Player;
+    [Range(0.05f,10)]
     [SerializeField] private float Thick;
     [SerializeField] private float MidSpaceLength;
 
@@ -33,7 +34,7 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
     {
 
     }
-
+    #region
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -43,7 +44,7 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
                 //最好做个检测有没有多个物体同时绑定了player
         }
     }
-
+    #endregion
     private void OnTriggerExit(Collider other)
     {
         //TODO：可能会出现玩家在磁铁上传送导致父子层级出问题的bug

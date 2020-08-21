@@ -18,7 +18,7 @@ public class GunPrototype : VRTK_InteractableObject
     public GameObject ShotPoint;
 
     public int MaxBulletNum;
-    private int currentBulletNum;
+    protected int currentBulletNum;
     public int CurrentBulletNum { private set { currentBulletNum = value; } get { return currentBulletNum; } }
 
     public RightHandEventPass right;//枪激活时候要挂载到这个手上

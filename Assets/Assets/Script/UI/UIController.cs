@@ -55,6 +55,7 @@ public class UIController : MyElement
         ChangeGunNum(bullet);
     }
 
+    //TODO：UI这里的命名。。。不知道算不算好
     private void ChangeGunName(string name)
     {
         GunType.text = "枪械类型:" + name;

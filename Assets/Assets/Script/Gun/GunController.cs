@@ -63,7 +63,7 @@ public class GunController : MyElement
         }
     }
 
-    public void Shot()
+    virtual public void Shot()
     {
         if (guns.Count == 0)
             return;
@@ -116,7 +116,6 @@ public class GunController : MyElement
     }
 
 
-
     private void SendGunStateToUI()
     {
         string gunType;
@@ -144,6 +143,7 @@ public class GunController : MyElement
         isGunGrabOnStart = true;
         yield return new WaitForSeconds(0.1f);
         ChangeGun(currentGunNum);
+        SendGunStateToUI();
 
     }
 }

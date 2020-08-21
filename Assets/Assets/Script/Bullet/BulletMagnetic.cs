@@ -36,4 +36,5 @@ public class BulletMagnetic : BulletPrototype
         base.OnTriggerEnter(collision);
     }
 
+
 }

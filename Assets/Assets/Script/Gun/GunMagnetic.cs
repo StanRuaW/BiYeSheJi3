@@ -7,7 +7,7 @@ public class GunMagnetic :GunPrototype
 {
     public Nullable<bool> isN;
     // Start is called before the first frame update
-    new void Start()
+     void Awake()
     {
         gunType = GunUIStateName.GunMagnetic;
 
@@ -41,6 +41,12 @@ public class GunMagnetic :GunPrototype
             isN = null;
         else
             isN = true;
+    }
+
+    public override void Shot()
+    {
+        currentBulletNum++;
+        base.Shot();
     }
 }
 
