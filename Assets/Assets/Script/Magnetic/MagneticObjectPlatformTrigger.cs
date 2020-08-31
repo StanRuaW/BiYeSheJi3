@@ -58,9 +58,9 @@ public class MagneticObjectPlatformTrigger : MonoBehaviour
 
     private void SetTriggerShape()
     {
-        float colliderScaleY = (myParent.localScale.y + Thick) ;
-        float colliderScaleX = (myParent.localScale.x - MidSpaceLength) ;
-        float colliderScaleZ = (myParent.localScale.z - MidSpaceLength);
+        float colliderScaleY = (myParent.localScale.y + Thick)/myParent.localScale.y ;
+        float colliderScaleX = (myParent.localScale.x - MidSpaceLength)/myParent.localScale.x ;
+        float colliderScaleZ = (myParent.localScale.z - MidSpaceLength)/myParent.localScale.z;
         myCollider.size = new Vector3(colliderScaleX, colliderScaleY, colliderScaleZ);
         myCollider.center = new Vector3(0, 0 + (colliderScaleY - 1) / 2, 0);
     }

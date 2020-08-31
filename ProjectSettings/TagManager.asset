@@ -23,9 +23,9 @@ TagManager:
   - 
   - 
   - Platform
-  - 
-  - 
-  - 
+  - Player
+  - MagneticObject
+  - MagneticObjectFrame
   - 
   - 
   - 

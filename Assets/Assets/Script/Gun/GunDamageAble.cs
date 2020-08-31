@@ -7,7 +7,7 @@ public class GunDamageAble : GunPrototype
     public float damage;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gunType = GunUIStateName.GunDamageAble;
         base.Start();   

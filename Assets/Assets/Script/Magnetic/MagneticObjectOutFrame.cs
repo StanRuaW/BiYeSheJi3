@@ -31,8 +31,10 @@ public class MagneticObjectOutFrame : MonoBehaviour
 
     private void SetColliderShape()
     {
-        float colliderScaleY = (source.transform.localScale.y + Thick) / source.transform.localScale.y - 1;
-        myCollider.size = new Vector3(1, colliderScaleY, 1);
-        myCollider.center = new Vector3(0, 0.5f + colliderScaleY, 0);
+        float colliderScaleY = 1 + Thick / source.transform.localScale.y;
+        float colliderScaleX = 1 + Thick / source.transform.localScale.x;
+        float colliderScaleZ = 1 + Thick / source.transform.localScale.z;
+        myCollider.size = new Vector3(colliderScaleX, colliderScaleY, colliderScaleZ);
+        myCollider.center = new Vector3(0, Thick / source.transform.localScale.y/2, 0);
     }
 }

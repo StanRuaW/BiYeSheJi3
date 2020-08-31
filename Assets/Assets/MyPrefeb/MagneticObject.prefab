@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 571219747}
   - component: {fileID: 571219750}
   - component: {fileID: 571219751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MagneticRange
   m_TagString: MagneticRange
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 3209622429030220911}
   - component: {fileID: 3209622429030220910}
   - component: {fileID: 3209622429030220909}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 3209622429083425045}
   - component: {fileID: 3209622429083425044}
   - component: {fileID: 3209622429083425050}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Body
   m_TagString: MagneticObject
   m_Icon: {fileID: 0}
@@ -329,8 +329,8 @@ MonoBehaviour:
   distanceRatio: 10
   MessRatio: 10
   MaxForce: 100
-  MinForce: 1
-  RangeDistance: 0.2
+  MinForce: 10
+  RangeDistance: 1
   magneticRange: {fileID: 571219745}
 --- !u!54 &3209622429083425050
 Rigidbody:
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 3209622430168044192}
   - component: {fileID: 3209622430168044199}
   - component: {fileID: 3209622430168044198}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OutFrame
   m_TagString: MagneticObjectOuterFrame
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 3209622429083425044}
-  Thick: 0.1
+  Thick: 0.04
 --- !u!1 &3209622430937841180
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3209622430937841181}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MagneticObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
